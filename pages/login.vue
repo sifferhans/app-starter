@@ -13,6 +13,10 @@ const { login } = useAuth();
 async function onSubmit(event: FormSubmitEvent<typeof state>) {
   await login(event.data.email, event.data.password);
 }
+
+definePageMeta({
+  layout: "auth",
+});
 </script>
 
 <template>
