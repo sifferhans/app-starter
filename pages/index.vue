@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const { data: user } = await useFetch("/api/user");
+const { user, logout } = useAuth();
 </script>
 
 <template>
   <h1>Home</h1>
-  <form action="/api/auth/logout" method="post">
+  <form @submit.prevent="logout">
     <button>Log out</button>
   </form>
   <pre>{{ user }}</pre>

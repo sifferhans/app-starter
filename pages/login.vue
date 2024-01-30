@@ -8,33 +8,36 @@ const state = reactive<Input<typeof LoginSchema>>({
   password: "",
 });
 
-async function onSubmit(event: FormSubmitEvent<typeof state>) {
-  try {
-    await $fetch("/api/auth/login", {
-      method: "post",
-      body: state,
-    });
+const { login } = useAuth();
 
-    await navigateTo("/");
-  } catch (err) {}
+async function onSubmit(event: FormSubmitEvent<typeof state>) {
+  await login(event.data.email, event.data.password);
 }
 </script>
 
 <template>
-  <UForm
-    :state="state"
-    :schema="LoginSchema"
-    @submit="onSubmit"
-    class="space-y-4 max-w-[45ch]"
-  >
-    <UFormGroup label="Email" name="email">
-      <UInput v-model="state.email" />
-    </UFormGroup>
+  <div class="flex flex-col gap-4 items-center justify-center h-screen">
+    <UForm
+      :state="state"
+      :schema="LoginSchema"
+      @submit="onSubmit"
+      class="space-y-4 max-w-[40ch] w-full p-6 border dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-900"
+    >
+      <UFormGroup label="Email" name="email">
+        <UInput v-model="state.email" />
+      </UFormGroup>
 
-    <UFormGroup label="Password" name="password">
-      <UInput v-model="state.password" type="password" />
-    </UFormGroup>
+      <UFormGroup label="Password" name="password">
+        <UInput v-model="state.password" type="password" />
+      </UFormGroup>
 
-    <UButton type="submit">Log in</UButton>
-  </UForm>
+      <UButton type="submit" block>Log in</UButton>
+    </UForm>
+    <p class="dark:text-gray-400">
+      Don't have an account?
+      <NuxtLink to="/signup" class="underline dark:text-white">
+        Sign up
+      </NuxtLink>
+    </p>
+  </div>
 </template>

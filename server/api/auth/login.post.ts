@@ -32,8 +32,8 @@ export default defineEventHandler(async (event) => {
 
   if (!passwordIsValid) {
     throw createError({
-      statusCode: 401,
-      statusMessage: "Invalid email or password",
+      status: 401,
+      message: "Invalid email or password",
     });
   }
 
