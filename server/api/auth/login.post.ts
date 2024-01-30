@@ -1,14 +1,8 @@
 import { eq } from "drizzle-orm";
 import { Argon2id } from "oslo/password";
-import { email, minLength, object, parse, string } from "valibot";
+import { parse } from "valibot";
 import { userTable } from "~/server/db/schema";
-
-const LoginSchema = object({
-  email: string([email("Invalid email address")]),
-  password: string([
-    minLength(8, "Password must be at least 8 characters long"),
-  ]),
-});
+import { LoginSchema } from "~/types/auth";
 
 export default defineEventHandler(async (event) => {
   const { email, password } = await readValidatedBody(event, (body) =>
@@ -16,10 +10,13 @@ export default defineEventHandler(async (event) => {
   );
 
   const db = useDB();
+  const lucia = useLucia();
 
-  const user = await db.query.userTable.findFirst({
-    where: () => eq(userTable.email, email),
-  });
+  const user = await db
+    .select()
+    .from(userTable)
+    .where(eq(userTable.email, email))
+    .get();
 
   if (!user) {
     throw createError({
@@ -46,4 +43,6 @@ export default defineEventHandler(async (event) => {
     "Set-Cookie",
     lucia.createSessionCookie(session.id).serialize()
   );
+
+  await lucia.deleteExpiredSessions();
 });

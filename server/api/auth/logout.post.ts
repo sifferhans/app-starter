@@ -1,4 +1,6 @@
 export default eventHandler(async (event) => {
+  const lucia = useLucia();
+
   if (!event.context.session) {
     throw createError({
       statusCode: 403,
