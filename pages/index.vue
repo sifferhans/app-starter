@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-const { user } = useAuth();
-
 definePageMeta({
   layout: "app",
 });
@@ -8,5 +6,4 @@ definePageMeta({
 
 <template>
   <h1>Home</h1>
-  <pre>{{ user }}</pre>
 </template>

@@ -5,4 +5,14 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "light",
   },
+  experimental: {
+    typedPages: true,
+  },
+  app: {
+    head: {
+      bodyAttrs: {
+        class: "bg-gray-100 dark:bg-gray-950",
+      },
+    },
+  },
 });
