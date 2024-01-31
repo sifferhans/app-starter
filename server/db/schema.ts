@@ -1,5 +1,9 @@
 import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 
+/**
+ * These fields are needed for auth and user management,
+ * but add more fields if needed.
+ */
 export const userTable = sqliteTable("user", {
   id: text("id").notNull().primaryKey(),
   email: text("email", { length: 255 }).notNull(),
@@ -13,6 +17,9 @@ export const userTable = sqliteTable("user", {
 
 export type User = typeof userTable.$inferSelect;
 
+/**
+ * Lucia needs these fields for session management.
+ */
 export const sessionTable = sqliteTable("session", {
   id: text("id").notNull().primaryKey(),
   userId: text("user_id")

@@ -4,6 +4,10 @@ import { sessionTable, userTable } from "../db/schema";
 
 let _lucia: Lucia | null = null;
 
+/**
+ * Get the lucia instance.
+ * If not yet instantiated, it will be instantiated first time.
+ */
 export function useLucia() {
   if (!_lucia) {
     const db = useDB();
@@ -27,6 +31,10 @@ export function useLucia() {
   return _lucia;
 }
 
+/**
+ * To get autocomplete for the `user` object,
+ * we need to augment the lucia module.
+ */
 declare module "lucia" {
   interface Register {
     Lucia: ReturnType<typeof useLucia>;
