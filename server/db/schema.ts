@@ -9,6 +9,9 @@ export const userTable = sqliteTable("user", {
   email: text("email", { length: 255 }).notNull(),
   username: text("username").notNull(),
   hashedPassword: text("hashed_password").notNull(),
+  role: text("role", { enum: ["user", "admin"] })
+    .notNull()
+    .default("user"),
   createdAt: integer("createdAt", { mode: "timestamp_ms" })
     .$default(() => new Date())
     .notNull(),

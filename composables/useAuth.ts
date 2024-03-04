@@ -35,7 +35,7 @@ export function useAuth() {
   async function logout() {
     try {
       await $fetch("/api/auth/logout", { method: "POST" });
-      await navigateTo("/login");
+      reloadNuxtApp();
     } catch {}
   }
 

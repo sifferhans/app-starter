@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const lucia = useLucia();
 
   const hashedPassword = await new Argon2id().hash(password);
-  const userId = generateId(15);
+  const userId = generateRandomID("user");
 
   try {
     await db.insert(userTable).values({

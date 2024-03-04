@@ -1,5 +1,10 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
-  const { data: user } = await useFetch("/api/user");
+  const data = await useRequestFetch()("/api/user");
+  const { user } = useAuth();
+
+  if (data) {
+    user.value = data;
+  }
 
   const isAuthPage = to.path.includes("login") || to.path.includes("signup");
 

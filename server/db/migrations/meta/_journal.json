@@ -8,6 +8,13 @@
       "when": 1706621646535,
       "tag": "0000_bumpy_rage",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1709560943221,
+      "tag": "0001_pink_warlock",
+      "breakpoints": true
     }
   ]
 }

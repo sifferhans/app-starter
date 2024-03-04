@@ -2,7 +2,7 @@ import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
 import { Lucia } from "lucia";
 import { sessionTable, userTable } from "../db/schema";
 
-let _lucia: Lucia | null = null;
+let _lucia: Lucia<Record<string, any>, DatabaseUserAttributes> | null = null;
 
 /**
  * Get the lucia instance.
@@ -23,6 +23,7 @@ export function useLucia() {
         return {
           username: attributes.username,
           email: attributes.email,
+          role: attributes.role,
         };
       },
     });
@@ -45,4 +46,5 @@ declare module "lucia" {
 interface DatabaseUserAttributes {
   email: string;
   username: string;
+  role: string;
 }
