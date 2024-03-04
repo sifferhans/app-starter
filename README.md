@@ -14,9 +14,5 @@ pnpm install
 ```
 
 ```sh
-pnpm db:push
-```
-
-```sh
 pnpm dev
 ```
