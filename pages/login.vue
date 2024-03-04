@@ -39,9 +39,9 @@ definePageMeta({
 
       <UButton type="submit" block>Log in</UButton>
     </UForm>
-    <p class="dark:text-gray-400">
+    <p class="text-gray-500 dark:text-gray-400">
       Don't have an account?
-      <NuxtLink to="/signup" class="underline dark:text-white">
+      <NuxtLink to="/signup" class="underline text-black dark:text-white">
         Sign up
       </NuxtLink>
     </p>
