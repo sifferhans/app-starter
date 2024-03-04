@@ -4,30 +4,18 @@ definePageMeta({
 });
 
 const { data: users } = await useFetch("/api/users");
-
-const userColumns = [
-  { key: "id", label: "ID" },
-  { key: "username", label: "Username", sortable: true },
-  { key: "email", label: "Email", sortable: true },
-  { key: "role", label: "Role" },
-];
 </script>
 
 <template>
-  <div>
-    <h1 class="text-2xl text-gray-500 my-8">Admin</h1>
+  <div class="grid gap-6 grid-cols-4">
+    <h1 class="text-2xl text-gray-500 col-span-full">Admin</h1>
 
-    <section id="users">
-      <h2 class="text-xl mb-2">Users</h2>
-      <UTable
-        :rows="users"
-        :columns="userColumns"
-        class="bg-white rounded-xl shadow"
-      >
-        <template #role-data="{ row }">
-          <UBadge color="white">{{ row.role }}</UBadge>
-        </template>
-      </UTable>
-    </section>
+    <AdminDashboardTile
+      v-if="users?.length"
+      title="Newest users"
+      class="col-span-2"
+    >
+      <AdminDashboardUsers :users="users" />
+    </AdminDashboardTile>
   </div>
 </template>
