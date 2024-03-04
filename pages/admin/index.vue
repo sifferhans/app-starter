@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: "admin",
   middleware: ["admin"],
 });
 
@@ -16,9 +15,9 @@ const userColumns = [
 
 <template>
   <div>
-    <h1 class="text-2xl">Admin</h1>
+    <h1 class="text-2xl text-gray-500 my-8">Admin</h1>
 
-    <section id="users" class="my-8">
+    <section id="users">
       <h2 class="text-xl mb-2">Users</h2>
       <UTable
         :rows="users"
