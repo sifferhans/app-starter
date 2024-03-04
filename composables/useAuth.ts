@@ -3,7 +3,12 @@ import type { User } from "lucia";
 export function useAuth() {
   const user = useState<User | null>("user", () => null);
 
-  async function signup(email: string, password: string, username?: string) {
+  async function signup(
+    email: string,
+    password: string,
+    username?: string,
+    role?: "user" | "admin"
+  ) {
     try {
       await $fetch("/api/auth/signup", {
         method: "POST",
@@ -11,6 +16,7 @@ export function useAuth() {
           email,
           password,
           username,
+          role,
         },
       });
 

@@ -5,8 +5,9 @@ import { userTable } from "~/server/db/schema";
 import { SignupSchema } from "~/types/auth";
 
 export default defineEventHandler(async (event) => {
-  const { email, password, username } = await readValidatedBody(event, (body) =>
-    parse(SignupSchema, body)
+  const { email, password, username, role } = await readValidatedBody(
+    event,
+    (body) => parse(SignupSchema, body)
   );
 
   const db = useDB();
@@ -21,6 +22,7 @@ export default defineEventHandler(async (event) => {
       email,
       hashedPassword,
       username,
+      role,
     });
 
     const session = await lucia.createSession(userId, {});
