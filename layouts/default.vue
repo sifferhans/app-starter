@@ -4,18 +4,26 @@ const { logout, user } = useAuth();
 
 <template>
   <div>
-    <nav
-      class="p-4 bg-white border-b border-b-gray-200 dark:border-b-gray-800 flex gap-4 justify-between items-center"
+    <header
+      class="p-4 bg-white border-b border-b-gray-200 dark:border-b-gray-800"
     >
-      <NuxtLink to="/" class="font-bold">App</NuxtLink>
+      <UContainer>
+        <nav class="flex gap-4 justify-between items-center">
+          <NuxtLink to="/" class="font-bold">App</NuxtLink>
+          <div class="flex gap-4 items-center">
+            <small>{{ user.email }}</small>
+            <UButton @click="logout" variant="solid" color="white" size="xs">
+              Log out
+            </UButton>
+          </div>
+        </nav>
+      </UContainer>
+    </header>
 
-      <div class="flex gap-4 items-center">
-        <small>{{ user.email }}</small>
-        <UButton @click="logout" variant="solid" color="white" size="xs">
-          Log out
-        </UButton>
-      </div>
-    </nav>
-    <slot />
+    <main class="p-4">
+      <UContainer>
+        <slot />
+      </UContainer>
+    </main>
   </div>
 </template>
