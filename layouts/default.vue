@@ -29,7 +29,7 @@ const links = computed(() =>
 
         <div v-if="user" class="flex gap-4 items-center">
           <small>{{ user.email }}</small>
-          <UButton @click="logout" variant="solid" color="white" size="xs">
+          <UButton variant="solid" color="white" size="xs" @click="logout">
             Log out
           </UButton>
         </div>

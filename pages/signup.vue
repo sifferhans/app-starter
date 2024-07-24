@@ -25,8 +25,8 @@ definePageMeta({
     <UForm
       :state="state"
       :schema="SignupSchema"
-      @submit="onSubmit"
       class="space-y-4 max-w-[40ch] w-full p-6 border dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-900"
+      @submit="onSubmit"
     >
       <h1 class="font-bold text-2xl">Sign up</h1>
 
